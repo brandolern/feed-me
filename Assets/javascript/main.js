@@ -25,7 +25,7 @@ $(document).ready(function () {
 
         //If user clicks allow position, clear form and show cuisine cards
         if (lat !== undefined) {
-            $(".cusine-cards").css("display", "flex");
+            $(".cuisine-cards").css("display", "flex");
             $(".location-form").css("display", "none");
             $(".change-heading").text("Pick Your Cuisine Below!");
 
@@ -35,9 +35,9 @@ $(document).ready(function () {
     }
 
     //Get user location when the <body> has an id of "userLocation" (secondpage.html)
-    if ($('body#userLocation').length > 0) {
+    $("#get-location").on("click", function () {
         getLocation();
-    }
+    });
 
     //Get values from location form
     $("#submit").on("click", function (event) {
@@ -63,7 +63,7 @@ $(document).ready(function () {
             console.log(long);
 
             // On form submit clear the form and show cuisine cards
-            $(".cusine-cards").css("display", "flex");
+            $(".cuisine-cards").css("display", "flex");
             $(".location-form").css("display", "none");
             $(".change-heading").text("Time to Pick Your Cuisine Type!");
 
@@ -103,8 +103,8 @@ $(document).ready(function () {
             //Prints new restaurant
             function newRestaurant() {
 
-                $('.cusine-cards').empty();
-
+                $(".cuisine-cards").css("display", "none");
+                $(".results").empty();
 
                 //Variables and function for google places library
                 var map;
@@ -193,13 +193,18 @@ $(document).ready(function () {
                 backButton.attr('id', 'back');
                 backButton.text('Previous Option');
 
+                var returnButton = $("<button>");
+                returnButton.addClass("btn btn-warning text-center");
+                returnButton.attr('id', 'return');
+                returnButton.text('Choose Another Cuisine');
+
                 //connecting all elements together
                 link.append(selectButton);
-                divTwo.append(pClass, pClass2, link, backButton, nextButton);
+                divTwo.append(pClass, pClass2, link, backButton, nextButton, returnButton);
                 startDiv.append(divTwo);
 
                 //print to page
-                $('.cusine-cards').append(startDiv);
+                $('.results').append(startDiv);
             };
 
             newRestaurant();
@@ -224,6 +229,12 @@ $(document).ready(function () {
 
                 counter--;
                 newRestaurant();
+            });
+
+            $(document).on("click", "#return", function () {
+                $(".results").empty();
+                $(".change-heading").text("Time to Pick Your Cuisine Type!");
+                $(".cuisine-cards").css("display", "flex");
             });
 
         }).fail(function (jqXHR, textStatus) {

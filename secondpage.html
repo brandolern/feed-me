@@ -36,7 +36,11 @@
     <p class="geoError"></p>
 
     <section class="location-form">
-        <button class="btn btn-lg btn-default" id="choose-location">Use Your Current Location</button>
+        <div class="text-center">
+            <button class="btn btn-lg btn-default text-center" id="get-location">Use Your Current Location</button>
+        </div>
+        <p class="or">OR</p>
+        <p class="custom-address">Enter a custom address below</p>
         <form>
             <div class="form-group">
                 <label for="street" class="label">Street Number</label>
@@ -108,7 +112,8 @@
         </form>
     </section>
     <div id="map"></div>
-    <section class="cusine-cards">
+
+    <section class="cuisine-cards">
         <div class="container">
             <div class="row">
                 <div class="col-sm-4">
@@ -177,9 +182,11 @@
                 </div>
 
             </div>
-        </div>
-    </section>
 
+        </div>
+
+    </section>
+    <div class="results"></div>
 
 </body>
 
